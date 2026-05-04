@@ -85,11 +85,16 @@ export function AgenteForm({ agente, action, onSuccess, onCancel }: AgenteFormPr
         </p>
       )}
 
-      <div className="flex gap-3 pt-2">
-        <Button type="submit" loading={pending}>
+      <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:gap-3">
+        <Button type="submit" loading={pending} className="w-full sm:w-auto">
           {agente ? "Salvar alterações" : "Criar agente"}
         </Button>
-        <Button type="button" variant="secondary" onClick={onCancel ?? (() => history.back())}>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={onCancel ?? (() => history.back())}
+          className="w-full sm:w-auto"
+        >
           Cancelar
         </Button>
       </div>

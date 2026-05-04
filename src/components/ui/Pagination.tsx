@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -18,49 +19,70 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
   );
 
   return (
-    <div className="flex items-center gap-1">
-      <button
-        onClick={() => onPageChange(page - 1)}
-        disabled={page === 1}
-        className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:pointer-events-none"
-        aria-label="Página anterior"
-      >
-        <ChevronLeft className="h-4 w-4" />
-      </button>
+    <>
+      <div className="flex items-center gap-2 sm:hidden">
+        <button
+          onClick={() => onPageChange(page - 1)}
+          disabled={page === 1}
+          className="flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-40"
+        >
+          <ChevronLeft className="h-4 w-4" />
+          Anterior
+        </button>
+        <span className="text-sm text-gray-500">
+          Página {page} de {totalPages}
+        </span>
+        <button
+          onClick={() => onPageChange(page + 1)}
+          disabled={page === totalPages}
+          className="flex items-center gap-1 rounded-lg border border-border px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-40"
+        >
+          Próximo
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
 
-      {visible.map((p, i) => {
-        const prev = visible[i - 1];
-        return (
-          <>
-            {prev && p - prev > 1 && (
-              <span key={`ellipsis-${p}`} className="px-1 text-gray-400 text-sm">
-                …
-              </span>
-            )}
-            <button
-              key={p}
-              onClick={() => onPageChange(p)}
-              className={cn(
-                "h-8 w-8 rounded-lg text-sm font-medium transition-colors",
-                p === page
-                  ? "bg-primary text-white"
-                  : "text-gray-600 hover:bg-gray-100"
+      <div className="hidden items-center gap-1 sm:flex">
+        <button
+          onClick={() => onPageChange(page - 1)}
+          disabled={page === 1}
+          className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-40"
+          aria-label="Página anterior"
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </button>
+
+        {visible.map((p, i) => {
+          const prev = visible[i - 1];
+          return (
+            <Fragment key={p}>
+              {prev && p - prev > 1 && (
+                <span className="px-1 text-sm text-gray-400">…</span>
               )}
-            >
-              {p}
-            </button>
-          </>
-        );
-      })}
+              <button
+                onClick={() => onPageChange(p)}
+                className={cn(
+                  "h-8 w-8 rounded-lg text-sm font-medium transition-colors",
+                  p === page
+                    ? "bg-primary text-white"
+                    : "text-gray-600 hover:bg-gray-100"
+                )}
+              >
+                {p}
+              </button>
+            </Fragment>
+          );
+        })}
 
-      <button
-        onClick={() => onPageChange(page + 1)}
-        disabled={page === totalPages}
-        className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:pointer-events-none"
-        aria-label="Próxima página"
-      >
-        <ChevronRight className="h-4 w-4" />
-      </button>
-    </div>
+        <button
+          onClick={() => onPageChange(page + 1)}
+          disabled={page === totalPages}
+          className="rounded-lg p-1.5 text-gray-500 hover:bg-gray-100 disabled:pointer-events-none disabled:opacity-40"
+          aria-label="Próxima página"
+        >
+          <ChevronRight className="h-4 w-4" />
+        </button>
+      </div>
+    </>
   );
 }

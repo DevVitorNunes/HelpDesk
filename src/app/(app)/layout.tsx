@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import { getNotifications } from "@/lib/queries/notifications.queries";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { Header } from "@/components/layout/Header";
+import { AppShell } from "@/components/layout/AppShell";
 import type { AppUser, UserRole } from "@/types/app.types";
 
 export default async function AppLayout({
@@ -29,18 +28,14 @@ export default async function AppLayout({
   const notifications = await getNotifications(profile.id);
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <Sidebar role={profile.role as UserRole} />
-
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <Header
-          userId={profile.id}
-          companyId={profile.company_id}
-          userName={profile.name}
-          notifications={notifications}
-        />
-        <main className="flex-1 overflow-y-auto bg-bg p-6">{children}</main>
-      </div>
-    </div>
+    <AppShell
+      role={profile.role as UserRole}
+      userId={profile.id}
+      userName={profile.name}
+      companyId={profile.company_id}
+      initialNotifications={notifications}
+    >
+      {children}
+    </AppShell>
   );
 }

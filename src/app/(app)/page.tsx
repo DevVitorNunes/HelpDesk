@@ -19,9 +19,8 @@ export default async function DashboardPage() {
   ]);
 
   return (
-    <div className="flex flex-col gap-6">
-      {/* Stat cards */}
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="flex flex-col gap-4 sm:gap-6">
+      <div className="grid gap-3 grid-cols-2 sm:gap-4 xl:grid-cols-4">
         <StatCard
           title="Tickets abertos"
           value={stats.open}
@@ -48,16 +47,15 @@ export default async function DashboardPage() {
         />
       </div>
 
-      {/* Charts row 1 */}
-      <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
-        <div className="rounded-xl border border-border bg-white p-5">
+      <div className="grid grid-cols-1 gap-4 sm:gap-6 lg:grid-cols-[1fr_360px]">
+        <div className="rounded-xl border border-border bg-white p-4 sm:p-5">
           <h3 className="mb-4 text-sm font-semibold text-gray-900">
             Tickets criados (últimos 30 dias)
           </h3>
           <TicketsByDayChart data={ticketsByDay} />
         </div>
 
-        <div className="rounded-xl border border-border bg-white p-5">
+        <div className="rounded-xl border border-border bg-white p-4 sm:p-5">
           <h3 className="mb-4 text-sm font-semibold text-gray-900">
             Tickets por status
           </h3>
@@ -65,8 +63,7 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Charts row 2 */}
-      <div className="rounded-xl border border-border bg-white p-5">
+      <div className="rounded-xl border border-border bg-white p-4 sm:p-5">
         <h3 className="mb-4 text-sm font-semibold text-gray-900">
           Tickets abertos por agente
         </h3>

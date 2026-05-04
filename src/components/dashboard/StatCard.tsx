@@ -35,13 +35,13 @@ export function StatCard({ title, value, icon, color = "orange" }: StatCardProps
   const c = colorMap[color];
 
   return (
-    <div className="rounded-xl border border-border bg-white p-5">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-sm text-gray-500">{title}</p>
-          <p className={cn("mt-1 text-3xl font-bold", c.value)}>{value}</p>
+    <div className="rounded-xl border border-border bg-white p-4 sm:p-5">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <p className="truncate text-xs text-gray-500 sm:text-sm">{title}</p>
+          <p className={cn("mt-1 text-2xl font-bold sm:text-3xl", c.value)}>{value}</p>
         </div>
-        <div className={cn("flex h-10 w-10 items-center justify-center rounded-xl", c.bg)}>
+        <div className={cn("flex h-9 w-9 shrink-0 items-center justify-center rounded-xl sm:h-10 sm:w-10", c.bg)}>
           <div className={c.icon}>{icon}</div>
         </div>
       </div>

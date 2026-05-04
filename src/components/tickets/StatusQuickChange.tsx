@@ -46,7 +46,7 @@ export function StatusQuickChange({ ticketId, currentStatus }: StatusQuickChange
             onClick={() => setOpen(false)}
             aria-hidden
           />
-          <div className="absolute left-0 top-full z-20 mt-1 min-w-40 rounded-xl border border-border bg-white py-1 shadow-lg">
+          <div className="absolute left-0 top-full z-20 mt-1 min-w-40 max-w-[calc(100vw-1rem)] rounded-xl border border-border bg-white py-1 shadow-lg">
             {TICKET_STATUSES.map((s) => (
               <button
                 key={s}

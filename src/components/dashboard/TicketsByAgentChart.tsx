@@ -35,7 +35,7 @@ export function TicketsByAgentChart({ data }: TicketsByAgentChartProps) {
         <YAxis
           type="category"
           dataKey="nome"
-          width={128}
+          width={96}
           interval={0}
           tick={{ fontSize: 11, fill: "#374151" }}
           tickLine={false}

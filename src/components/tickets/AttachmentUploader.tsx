@@ -83,8 +83,7 @@ export function AttachmentUploader({
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Upload button */}
-      <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
         <input
           ref={inputRef}
           type="file"
@@ -98,6 +97,7 @@ export function AttachmentUploader({
           size="sm"
           loading={uploading}
           onClick={() => inputRef.current?.click()}
+          className="w-full sm:w-auto"
         >
           <Upload className="h-4 w-4" />
           {uploading ? "Enviando..." : "Adicionar anexo"}
@@ -115,11 +115,11 @@ export function AttachmentUploader({
           {attachments.map((a) => (
             <div
               key={a.id}
-              className="flex items-center gap-3 rounded-lg border border-border bg-gray-50 px-3 py-2"
+              className="flex items-center gap-2 rounded-lg border border-border bg-gray-50 px-3 py-2 sm:gap-3"
             >
               <Paperclip className="h-4 w-4 flex-shrink-0 text-gray-400" />
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium text-gray-800 truncate">
+                <p className="truncate text-sm font-medium text-gray-800">
                   {a.nome_arquivo}
                 </p>
                 {a.tamanho_bytes && (
@@ -128,17 +128,17 @@ export function AttachmentUploader({
                   </p>
                 )}
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
                 <button
                   onClick={() => handleDownload(a)}
-                  className="rounded-lg p-1.5 text-gray-400 hover:bg-gray-200 hover:text-gray-600"
+                  className="rounded-lg p-2 text-gray-400 hover:bg-gray-200 hover:text-gray-600"
                   aria-label="Download"
                 >
                   <Download className="h-4 w-4" />
                 </button>
                 <button
                   onClick={() => handleDelete(a)}
-                  className="rounded-lg p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-600"
+                  className="rounded-lg p-2 text-gray-400 hover:bg-red-50 hover:text-red-600"
                   aria-label="Remover"
                 >
                   <Trash2 className="h-4 w-4" />
