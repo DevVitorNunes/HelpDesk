@@ -15,7 +15,7 @@ import type { Agente, Client, TicketDetail } from "@/types/app.types";
 
 function AccordionSection({
   title,
-  defaultOpen = true,
+  defaultOpen = false,
   children,
 }: {
   title: string;
@@ -100,8 +100,8 @@ export function TicketDetailModal({
       open={!!ticketId}
       onClose={onClose}
       title={ticket?.title ?? "Detalhes do Ticket"}
-      className="max-w-5xl h-[700px] max-h-[700px]"
-      contentClassName="flex-1 min-h-0 overflow-hidden p-0"
+      className="sm:max-w-5xl h-[700px] max-h-[700px]"
+      contentClassName="flex-1 min-h-0 overflow-hidden p-0 sm:p-0"
     >
       {loading || !ticket ? (
         <div className="flex items-center justify-center h-full">
@@ -137,7 +137,6 @@ export function TicketDetailModal({
             <div className="flex-1 min-h-0 overflow-y-auto scrollbar-thin px-4">
               <AccordionSection
                 title={`Comentários (${ticket.comments.length})`}
-                defaultOpen
               >
                 <CommentList
                   comments={ticket.comments}
@@ -152,7 +151,6 @@ export function TicketDetailModal({
 
               <AccordionSection
                 title={`Anexos (${ticket.attachments.length})`}
-                defaultOpen
               >
                 <AttachmentUploader
                   ticketId={ticket.id}
